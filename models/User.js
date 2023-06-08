@@ -1,33 +1,64 @@
 const { Schema, model } = require('mongoose');
-const assignmentSchema = require('./Assignment');
+
 
 // Schema to create Student model
 const studentSchema = new Schema(
   {
-    first: {
+    username: {
       type: String,
       required: true,
-      max_length: 50,
+      unique: true,
+      trim: true,
     },
-    last: {
+    email: {
       type: String,
       required: true,
-      max_length: 50,
+      unique: true,
+      validate: {
+        validator: function (v) {
+          return /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(v);
+        },
+        message: "Invalid information",
+      },
     },
-    github: {
-      type: String,
-      required: true,
-      max_length: 50,
-    },
-    assignments: [assignmentSchema],
+    thoughts: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: "thought",
+      },
+    ],
+    friends: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: "user",
+      },
+    ],
+
   },
   {
     toJSON: {
       getters: true,
+      virtuals: true
     },
   }
 );
+userSchema.virtual("friendCount").get(function () {
+  return this.friends.length;
+});
 
-const Student = model('student', studentSchema);
+userSchema.pre("remove", async function (next) {
+  try {
+    const allUsers = await User.updateMany(
+        { friends: this._id },
+        {$pull: {friends: req.body.friendId}},
+        {runValidators: true, new: true});    
+    next()
+  } catch (err) {
+    console.log(err)
+    next()
+  }
+});
 
-module.exports = Student;
+const User = model('user', userSchema);
+
+module.exports = User;
