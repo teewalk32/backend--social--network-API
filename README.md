@@ -3,12 +3,8 @@
 
 ## Description
 
-Provide a short description explaining the what, why, and how of your project. Use the following questions as a guide:
+I was motivated to complete this project because iwanted to learn the basics of creating the backend of a social media site. I built the project to understand how to add users and thoughts to social media backend. this project will help a beginer understand the basic of the backend.
 
-- What was your motivation?
-- Why did you build this project? (Note: the answer is not "Because it was a homework assignment.")
-- What problem does it solve?
-- What did you learn?
 
 ## Table of Contents (Optional)
 
@@ -22,13 +18,13 @@ Provide a short description explaining the what, why, and how of your project. U
 
 ## Installation
 
-
+you will need to install node, express, and  monogoose for this project. 
 
 ## Usage
 
 Use Insonmia to navigate through the backend
 
-![alt text](assets/images/screenshot.png)
+![alt text](assets/social-net.png)
 
 ## Credits
 
@@ -39,5 +35,7 @@ N/A
 MIT License
 
 ## Video
+
+https://drive.google.com/file/d/1sHVHYHZsoebNQMHaMnJLkw1z6lEGvNOM/view
 
 
