@@ -54,4 +54,4 @@ function formatDate(date) {
 }
 const Thought = model('thought', thoughtSchema);
 
-module.exports = Thoughts;
+module.exports = Thought;
